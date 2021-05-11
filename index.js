@@ -4,7 +4,6 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const keys = require('./config/keys');
 
 
-
 //MIDDLEWARE
 const app = express();
 
@@ -21,11 +20,18 @@ passport.use(
         callbackURL: '/auth/google/callback'
     }, 
     // as a second argument pass an arrow functiion
-    accessToken => {
-        console.log(accessToken);
+    //accessTopken = read ad or delte emails for user
+    //refreshToken = allows us to refresh the acesstoken after it is expired
+    //profile = all identifying information
+    (accessToken, refreshToken, profile, done) => {
+        console.log('access Token', accessToken);
+        console.log('refresh token', refreshToken);
+        console.log('profile', profile);
     }
   )
 ); 
+
+
 
 
 
