@@ -1,6 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
+//cookie session pulls some data out of the cookie 
 const cookieSession = require("cookie-session");
+//passport pulls user id out of cookie
 const passport = require("passport");
 const keys = require("./config/keys");
 require("./models/User");
@@ -12,7 +14,7 @@ mongoose.connect(keys.mongoURI, {
     useUnifiedTopology: true,
 });
 
-//MIDDLEWARE
+//MIDDLEWARE do pre proccesing 
 const app = express();
 
 app.use(

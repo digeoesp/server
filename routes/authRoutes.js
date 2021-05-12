@@ -21,3 +21,6 @@ module.exports = (app) => {
         res.send(req.user);
     });
 };
+
+
+//what is cookie session doing
