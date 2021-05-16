@@ -5,6 +5,7 @@ const cookieSession = require("cookie-session");
 //passport pulls user id out of cookie
 const passport = require("passport");
 const keys = require("./config/keys");
+const bodyParser = require('body-parser');
 require("./models/User");
 require("./services/passport");
 
@@ -16,13 +17,14 @@ mongoose.connect(keys.mongoURI, {
 
 //MIDDLEWARE do pre proccesing 
 const app = express();
-
+app.use(express.json());
+app.use(bodyParser.json());
 app.use(
     cookieSession({
         maxAge: 30 * 24 * 60 * 60 * 1000,
         keys: [keys.cookieKey]
     })
-)
+);
 
 app.use(passport.initialize());
 app.use(passport.session());
